@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mathmate</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <!-- /CSS -->
+    <%= stylesheet_link_tag 'application', media: 'all'%>
+    
+    <!-- /jQuery -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>   
+
+    <!-- /LaTex -->
+    <%= javascript_include_tag 'application'%>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } , messageStyle: 'none'});</script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_CHTML"></script>
+    <meta http-equiv="X-UA-Compatible" CONTENT="IE=EmulateIE7" />
+
+    <!-- /bootstrap -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- /scroll animation -->
+    <link rel="stylesheet" href="https://unpkg.com/scroll-hint@1.1.2/css/scroll-hint.css">
+
+    <!-- /Lightbox2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
+    
+  </head>
+
+  <body>
+    <%# ロード画面 %>
+  <div id="loading">
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+  </div>
+
+    <div class="wrapper">
+      <header>
+      <nav class="navbar navbar-expand-lg">
+        <%# ヘッダーロゴ %>
+        <a class="navbar-brand" href="/">
+          <%= image_tag("logo_top.png", :class => "logo") %>
+        </a>
+
+        <%# スマホ版メニュー %>
+          <button type="button" class="navbar-toggler d-block d-md-none" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="レスポンシブ・ナビゲーションバー">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="Navber">
+            <%if user_signed_in?%>
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0 d-block d-md-none">
+                <hr class="smart_hr">
+                <%= link_to '/posts/new', class:"smart_term" do%>
+                  <li>
+                    <%= icon("fa", "comments") %>　質問する
+                  </li>
+                <% end %>
+                <hr class="smart_hr">
+                <%= link_to "/users/#{current_user.id}", class:"smart_term" do %>
+                  <li>
+                    <%= icon("fa", "user-check") %>　マイページ
+                  </li>
+                <% end %>
+                <hr class="smart_hr">
+                <%= link_to destroy_user_session_path, method: :delete, class:"smart_term" do %>
+                  <li>
+                    <%= icon("fa", "sign-out-alt") %>　ログアウト
+                  </li>
+                <% end %>
+              </ul>
+              <hr class="smart_hr">
+            <% else %>
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0 d-block d-md-none">
+              <hr class="smart_hr">
+              <%= link_to new_user_registration_path, class:"smart_term" do%>
+                <li>  
+                  <%= icon("fa", "user-plus") %>　登録する
+                </li>
+              <% end %>
+              <hr class="smart_hr">
+              <%= link_to new_user_session_path, class:"smart_term" do%>
+                <li>
+                  <%= icon("fa", "home") %>　ログイン
+                </li>
+              <% end %>
+              </ul>
+              <hr class="smart_hr">
+            <% end %> 
+          </div>
+          
+        <%# PC版メニュー %>
+          <div class="form-inline my-2 my-lg-0 ml-auto d-none d-md-block">
+            <%if user_signed_in?%>
+              <div class="d-flex">
+                <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class:"logout d-none d-sm-block"%>
+                <%= link_to "質問する", '/posts/new', class: "btn registration shadow  d-none d-sm-block m-1"%>
+                <span class="item_user-icon shadow ml-3">
+                  <%= link_to image_tag(current_user.uimg.to_s, :size =>'48x48'),"/users/#{current_user.id}" %>
+                </span>
+              </div>
+            <% else %>
+              <div class="d-flex">
+                <%= link_to "ログイン", new_user_session_path, class: "login mx-3"%>
+                <%= link_to "登録", new_user_registration_path, class:"btn registration px-5 px-2 mx-2 shadow"%>
+              </div>
+            <% end %> 
+          </div>
+      </nav>
+      </header>
+
+      <%# フラッシュメッセージエリア %>
+      <div class="notifications">
+        <% flash.each do |key, value| %>
+          <%= content_tag(:div, value, class: key) %>
+        <% end %>
+      </div>
+
+      <%# コンテンツエリア %>
+      <%= yield %>
+
+    </div>
+
+    <%# フッター %>
+    <footer class="page-footer mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 col-sm-6 col-xs-12">
+            <span class="logo">
+              <a href='/'><%= image_tag("logo.png", :class => "logo") %></a>
+            </span>
+          </div>
+                  
+          <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="menu">
+                  <span>Menu</span>    
+                  <li><a href="#">
+                    <i class="fa fa-home" aria-hidden="true"></i> <a href="/">HOME</a>
+                  </li>
+                  <li><a href="#">
+                    <i class="fa fa-infinity" aria-hidden="true"></i> <%=link_to "Mathmateとは", '/menu/what'%>
+                  </li>
+                  <li><a href="#">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i> <%=link_to "ヘルプ", '/menu/help'%>
+                  </li>
+                  <li><a href="#">
+                    <i class="fa fa-file-alt" aria-hidden="true"></i> <%=link_to "利用規約", '/menu/rule'%>
+                  </li>
+              </ul>
+          </div>
+            
+          <div class="col-md-4 col-sm-12 col-xs-12">
+            <ul class="address">
+              <span>Contact</span>       
+              <li>
+                <i class="fa fa-envelope" aria-hidden="true"></i> <a href="/menu/contact">お問い合わせ</a>
+              </li> 
+            </ul>
+          </div>
+        </div> 
+      </div>
+      <div class="copyright">©︎ 2020 Rascal</div>
+    </footer>
+    
+    <%= javascript_include_tag('https://unpkg.com/scroll-hint@latest/js/scroll-hint.min.js') %>
+    <%= javascript_include_tag("https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js") %>
+  </body>
+</html>

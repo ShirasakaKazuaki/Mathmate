@@ -1,0 +1,73 @@
+<%= image_tag("what_image.jpg", :class => "what-img") %> 
+<div class="what_content container">
+    <p>Mathmateは、高校数学に対応した数学専用質問サービスです。「数学を質問するハードル」をなるべく下げられるようにデザインしています。</p>
+    <p>Mathmateには多くの魅力があり、過去問や勉強法などの質問もできるので、きっとあなたの役に立つはずです。</p>
+
+    <h2>キレイな数式</h2>
+    <%= image_tag("what_image2.jpg", :class => "what-img") %> 
+    <p>数式をキレイに表示するためにはLaTexと呼ばれるコードを記述しなければなりません。</p>
+    <div class="what_box">
+        \sum_{k=1}^{n} k 
+        <div class="arrow">👇</div>
+        $$\sum_{k=1}^{n} k$$
+    </div>
+    <p>しかし高校生でLaTexを打てる人はいないし、より簡単に質問できるようにしたい。</p>
+    <p>そこでMathmateでは、数式コードボタンを採用し、より数式が打ちやすいように工夫しました！</p>
+    <div class="what_box">
+        <div class="btn btn-outline-success">$$\sum_{k=1}^{n} k$$</div>
+        <div class="arrow">👇</div>
+        $$\sum_{k=1}^{n} k$$
+    </div>
+    <p>もちろん、LaTexのコードを直接打ってもOK😎。</p>
+    <a href="https://easy-copy-mathjax.nakaken88.com" class="latex_link"><%= icon("fa", "paperclip") %> LaTexコード一覧サイト</a>
+
+    <h2>伝えやすい/わかりやすい</h2>
+    <%= image_tag("what_image3.jpg", :class => "what-img") %> 
+    <p>数式がキレイに表示される、ということは</p>
+    <ul>
+        <li>解答者は問題の内容が瞬時にわかるので、すぐに回答してもらえやすい！</li>
+        <li>返ってきた回答が瞬時に理解できるので、内容を把握しやすい！</li>
+    </ul>
+    <p>というメリットがあります。</p>
+    <p>従来の質問サイトはLaTexに対応しておらず、$$\int_0^{a^2} \frac{a}{x^3} dx$$を表記すると</p>
+    <p style="text-align: center;">∮（0→a^2）a/x^3 dx</p>
+    <p>となっていたことを考えると、これって結構大事なことだと思いませんか？</p>
+
+
+    <h2>最も伝わりやすいフォーマットで</h2>
+    <%= image_tag("what_image4.jpg", :class => "what-img") %> 
+    <p>「いざ質問してみると、返ってきた答えが期待通りのものではない。」</p>
+    <p>「何を質問されているのか、さっぱりわからない」</p>
+    <p>という経験はありませんか？</p>
+    <p>Mathmateはこれを防ぐため、投稿画面が<b>『質問者が頭の中で”何を質問したいか”が整理できる』</b>ような形式になっています。</p>
+    <p>投稿画面に表示されている質問に答えていくだけで、あなたのしたかった質問が、求めていた回答が得られるようになります！</p>
+
+    <h2>Clap & Stock</h2>
+    <%= image_tag("what_image5.jpg", :class => "what-img") %> 
+    <p>Mathmateでは、</p>
+    <ul>
+        <li>Clap: いいと思った投稿に「がんばれ」のエールを送る機能</li>
+        <li>Stock: 『なるほど』と思った記事をストックしておいて、後から見直せるようにする機能</li>
+    </ul>
+    <p>を採用しました。</p>
+    <p>これは数学を学ぶ上で、最もやめるべき『孤独学習・完全独学』を克服するベストな機能です。</p>
+
+    <p>また簡易的なマイページを用意していますので、そこから</p>
+    <ul>
+        <li>どの記事にClapしたのか</li>
+        <li>Stockした記事の一覧</li>
+    </ul>
+    <p>などを、いつでも確認することができます。</p>
+    
+    <h3>Mathmateを使おう！</h3>
+    <hr>
+    <p>Mathmateであなたの疑問を徹底的に解決しましょう！もう、誰にも聞けない、誰も答えてくれない状況とはサヨナラです！</p>
+    <div class="what_under">
+        <%= link_to "/menu/rule" do%>
+            <span class="btn btn-warning shadow m-3"> <%= icon("fa", "file-alt") %> </i>利用規約</span>
+        <% end %>
+        <%= link_to new_user_registration_path do%>
+            <span class="btn btn-info shadow m-3"> <%= icon("fa", "user-plus") %> </i>登録する</span>
+        <% end %>
+    </div>
+</div>

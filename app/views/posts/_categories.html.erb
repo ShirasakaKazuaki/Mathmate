@@ -1,0 +1,70 @@
+<div class="btn-category-pack btn-sticky my-2 cat-one" style="width: 100%;">数Ⅰ</div>
+<div class="box_unit unit_one ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_one, :id, :unit_name, include_hidden: false) do |u|%>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-two" style="width: 100%;">数Ⅱ</div>
+<div class="box_unit unit_two ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_two, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-three" style="width: 100%;">数Ⅲ</div>
+<div class="box_unit unit_three ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_three, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-a" style="width: 100%;">数A</div>
+<div class="box_unit unit_a ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_a, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-b" style="width: 100%;">数B</div>
+<div class="box_unit unit_b ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_b, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-c" style="width: 100%;">数C</div>
+<div class="box_unit unit_c ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_c, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+
+<div class="btn-category-pack btn-sticky my-2 cat-other" style="width: 100%;">そのほか</div>
+<div class="box_unit unit_other ml-3" style="display: none;">
+    <%= f.collection_check_boxes(:unit_ids, @unit_other, :id, :unit_name, include_hidden: false) do |u| %>
+        <div>
+        <%= u.check_box %>
+        <%= u.label {u.text}%>
+        </div>
+    <% end %>
+</div>
+<div id="unit_check_error"></div>

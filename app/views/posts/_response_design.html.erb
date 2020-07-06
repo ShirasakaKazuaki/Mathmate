@@ -1,0 +1,63 @@
+<% if @responses.exists? %>
+    <% @responses.each do |response| %>
+        <div class="card border-secondary mb-3 mx-auto">
+
+            <%# 解答者情報 %>
+            <div class="card-header">
+                <div class="item_user-icon">
+                    <%= image_tag response.user.uimg.to_s, :size =>'45x45' %>
+                </div>
+                <div class="item_user-name ml-4">
+                    <span class=" ml-2"><strong><%= response.user.name %></strong>さん</span>
+                </div>
+                <div class="item_date">
+                    <span class=" ml-2"><%= response.updated_at.to_s(:datetime_jp)%></span>
+                </div>
+            </div>
+
+            <%# 解答内容 %>
+            <div class="card-body text-secondary">
+                <p class="card-text"><%= simple_format(response.content) %></p>
+            </div>
+
+            <div class="container">
+                <hr>
+
+                <%# コメント %>
+                <% if response.replies.exists? %>
+                    <% response.replies.each do |reply| %>
+                        <div class="balloon6">
+                            <%# ユーザー情報 %>
+                            <div class="faceicon">
+                                <span class="item_user-icon mr-2">
+                                    <%= image_tag reply.user.uimg.to_s, :size =>'48x48' %>
+                                </span>
+                            </div>
+                            <span class="ml-5"><%= reply.user.name%>さん</span>
+
+                            <%# コメント内容 %>
+                            <div class="chatting">
+                                <div class="says">
+                                    <p><%= simple_format(reply.content) %></p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    <% end %>
+                <% end %>
+
+                <%# コメント欄 %>
+                <% if user_signed_in? %>
+                    <%= form_with url: "/responses/#{response.id}/replies", local: true do |f|%>
+                        <p><%= f.text_area :content, class: "form-control shadow", placeholder:"🤔わからないことがあったら聞いてみよう！", size: "30x7"%></p>
+                        <%= f.submit "コメントする！", class:"btn btn-success float-right mb-3" %>
+                    <% end %>
+                <% else%>
+                    <div class="btn btn-info col-12 my-3 my-3">登録すると、コメントができるよ！</div>
+                <% end %>
+            </div>
+        </div>
+    <% end %>
+<% else %>
+    <h4 class="text-secondary ml-3 my-5">解答はまだありません。。。😇</h4>
+<% end %>

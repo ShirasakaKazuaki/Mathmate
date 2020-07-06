@@ -1,0 +1,147 @@
+// Place all the styles related to the Menus controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// rule
+$h1_color: gray;
+$announce_color: gray;
+
+.menu_content{
+    h1{
+        font-size: 30px;
+        color: $h1_color;
+        margin: 40px 0;
+    }
+    h2{
+        font-size: 30px;
+        margin: 80px 0 20px 0;
+    }
+    li{
+        margin: 10px 0;
+    }
+    td{
+        text-align: center;
+    }
+    p{
+        margin: 10px 0 5px 10px;
+    }
+    hr{
+        border:none;
+        border-top:dashed 1px gray;
+        margin: 50px 0;
+    }
+}
+
+.announce{
+    color: $announce_color;
+    margin-bottom: 20px;
+}
+
+
+// what
+.what_content{
+    h1{
+        text-align: center;
+    }
+    h2{
+        font-size: 27px;
+        margin: 50px 0 20px 0;
+    }
+    h3{
+        font-size: 23px;
+        text-align: center;
+        margin-top: 50px;
+    }
+    hr{
+        border: solid 2px;
+    }
+    li{
+        margin: 10px 0;
+    }
+    p{
+        font-size: 18px;
+        margin: 40px 0;
+    }
+    .what_box {
+        text-align: center;
+        padding: 20px 1em;
+        margin: 2em 0;
+        font-weight: bold;
+        color: #6091d3;/*文字色*/
+        background: #FFF;
+        border: solid 3px #6091d3;/*線*/
+        border-radius: 10px;/*角の丸み*/
+        p {
+            margin: 0; 
+            padding: 0;
+        }
+    }
+    .btn-outline-success{
+        padding: 0 90px;
+        background-color: white;
+    }
+    .arrow{
+        text-align: center;
+        font-size: 20px;
+        margin-top: 20px;
+    }
+    .latex_link{
+        font-size: 18px;
+        margin-left: 10px;
+    }
+    a{
+        text-decoration: none;
+    }
+    .what_under{
+        text-align: center;
+        background-color: #d7e4f5;
+        .btn{
+            color: white;
+            padding: 7px 18px;
+        }
+    }
+}
+.what-img{
+    width: 100%;    
+}
+
+
+//help
+.help_content{
+    @extend .menu_content;
+    h2{
+        margin: 0 0 30px 0;
+    }
+}
+.dm_zone{
+    text-align: center;
+}
+
+.btn-social-long-twitter {
+    color: #FFF;
+    border-radius: 7px;
+    display: inline-block;
+    height: 50px;
+    width: 300px;
+    text-align: center;
+    font-size: 25px;
+    line-height: 50px;
+    background: #1da1f3;
+    overflow: hidden;
+    text-decoration:none;
+}
+
+.btn-social-long-twitter .fa-twitter {
+    text-shadow: 2px 2px 0px #4287d6;
+    font-size: 30px;
+}
+
+.btn-social-long-twitter span {
+    display:inline-block;
+    transition: .5s;
+}
+
+.btn-social-long-twitter:hover span {
+    -webkit-transform: rotateX(360deg);
+    transform: rotateX(360deg);
+}

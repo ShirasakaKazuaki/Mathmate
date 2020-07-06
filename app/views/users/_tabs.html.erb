@@ -1,0 +1,25 @@
+<% if params.empty? %>
+    <p class="my-5 text-secondary ">該当する投稿はありません🙈</p>
+<% end %>
+
+    <% params.each do |f| %>
+    <% if params == @posts%>
+        <div class="mt-5">
+                <%= link_to "/posts/#{f.id}", method: :get, class: "text-dark no-underline" do%>
+                        <h3><%= f.title%></h3>
+                        <p class="ml-2"><%= f.content %></p>
+                        <p class="text-right"><%= icon("fa", "clock") %> <%= f.updated_at.to_s(:datetime_jp)%>に更新</p>
+                        <hr class="my-3">
+                <% end %>    
+        </div>
+    <% elsif params == @likes or @stocks or @answer%>
+        <div class="mt-5">
+                <%= link_to "/posts/#{f.post.id}", method: :get, class: "text-dark no-underline" do%>
+                        <h3><%= f.post.title%></h3>
+                        <p class="ml-2"><%= f.post.content %></p>
+                        <p class="text-right"><%= icon("fa", "clock") %> <%= f.post.updated_at.to_s(:datetime_jp)%>に更新</p>
+                        <hr class="my-3">
+                <% end %>    
+        </div>
+    <% end %>
+    <% end %>

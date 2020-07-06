@@ -1,0 +1,19 @@
+<% if user_signed_in? %>
+    <% if current_user.already_stocked?(post) %>
+        <%=link_to kill_stocks_path(post_id: post.id ,stock_id: post.stocks[0].id), method: :delete, remote: true do%>
+                <button type="button" class="btn btn-info w-100 m-1 py-3 px-5 shadow">
+                    ストック済み
+                </button>
+            <% end %>
+    <% else %>
+        <%=link_to post_stocks_path(post.id), method: :post, remote: true do %>
+            <button type="button" class="btn btn-outline-info w-100 m-1 py-3 px-5 shadow">
+                <%= icon("fa", "folder-open") %>
+            </button>
+        <% end %>
+    <% end %>
+<% else %>
+    <%= button_to new_user_session_path, class:"btn btn-outline-info w-100 m-1 py-3 px-5 shadow" do %>
+        <%= icon("fa", "folder-open") %>
+    <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<div class=<%= text %>>
+    <%= render partial: 'posts/QACdesign', locals: {qac_class: qac_class, qac_id: qac_id, title: prev }%>
+
+    <div class=<%= under %>>
+        <p><%= f.text_area "#{text_area}", id: text_id, class: "validate form-control #{text_class}", style: "border: none", size: "30x10", placeholder: placeholder %></p>
+        <div class="latex">
+            <%= render partial: 'posts/latex_buttons', locals: {type_class: latex_type }%>
+        </div>
+    </div>
+</div>
+<div class=<%= under_img %>>
+    <%= render partial: 'posts/img_form', locals: {'f': f, 'img': img }%>
+</div>
+

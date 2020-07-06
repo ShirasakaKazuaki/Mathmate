@@ -1,0 +1,127 @@
+<div class="post_show container mt-5">
+    <div class="show_contents">
+        <div class="show_posted_user"><%= @user.name%></div>
+        <div class="poseted_user_only">
+        <% if user_signed_in? && current_user.id == @post.user_id%>
+                <%= link_to "/posts/#{@post.id}/edit", method: :get, class:"user_only_btn btn btn-info" do%>
+                    <%= icon("fa", "pen-nib") %> <%= edit_term %>
+                <% end %>
+                <%= link_to  "/posts/#{@post.id}", method: :delete, data: { confirm: confirm_del }, class:"user_only_btn btn btn-danger" do%>
+                    <%= icon("fa", "trash") %> <%= del_term %>
+                <% end %>
+        <% end %>
+        </div>
+        <h2 class="show_title"><%= @post.title%></h2>
+        <div><%= icon("fa", "redo-alt") %> 更新日：<%= @post.updated_at.to_s(:datetime_jp)%></div>
+        <hr class="mb-3">
+        
+        <div class="show_category">
+            <% @post.units.each do |unit| %>
+                <span class="show_categories">
+                    <%= unit.unit_name %>
+                </span>
+            <% end %>
+        </div>
+
+        <% if @post.question.present? or @post.qimg.present?%>
+        <div class="show_question" style="display: block">
+            <span class="show-title"><span class="top">Q</span>uestion</span>
+            <div class="tex_contoroll">
+                <% if @post.question.present? %>
+                    <div class="my-5"><%= simple_format(@post.question)%></div>
+                <% end %>
+
+                <% if @post.qimg.present?%>
+                    <div class="show_img">
+                        <%= link_to @post.qimg.to_s, "data-lightbox" => @post.qimg.to_s do %>
+                            <%= image_tag @post.qimg.to_s, :width => '100%', class:"mt-3" %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% end %>
+        
+        <% if @post.answer.present? or @post.aimg.present?%>
+        <div class="show_answer" style="display: block">
+            <span class="show-title"><span class="top">M</span>yAnswer</span>
+            <div class="tex_contoroll">
+                <% if @post.answer.present? %>
+                    <div class="my-5"><%= simple_format(@post.answer)%></div>
+                <% end %>
+
+                <% if @post.aimg.present?%>
+                    <div class="show_img">
+                        <%= link_to @post.aimg.to_s, "data-lightbox" => @post.aimg.to_s do %>
+                            <%= image_tag @post.aimg.to_s, :width => '100%', class:"mt-3"  %>
+                        <% end %>
+                    </div>
+                <% end %>      
+            </div>
+        </div>
+        <% end %>
+    
+
+        <div class="show_content">
+            <h3 class="show_content_title">わからないこと</h3>
+            <hr>
+            <p class="show_content_term"><%= simple_format(@post.content) %></p>
+        </div>
+
+        <% if @post.supplement.present?%>
+            <div class="show_sup">
+                <h3 class="show_cup_title">補足</h3>
+                <hr>
+                <p class="show_sup_term"><%= simple_format(@post.supplement) %></p>
+            </div>
+        <% end %>
+
+        <div class="user_buttons">
+            <div id="likes_buttons_<%= @post.id %>" class="my-3">
+                <%= render 'likes/like', post: @post%>
+            </div>
+            <div id="stocks_buttons_<%= @post.id %>" class="my-3">
+                <%= render 'stocks/stock', post: @post%>
+            </div>
+        </div>
+        
+        <div class="profile-card container border mt-5">
+            <div class="row">
+                <span class="img_zone col-xs-6 cos-sm-6 col-lg-6 col-xl-6">
+                    <h2 class="item_user-author">Author</h2>
+                    <hr>
+                    <%= image_tag @user.uimg.to_s, class:"profile-card-img border" %>
+                </span>
+                <span class="col-xs-6 cos-sm-6 col-lg-6 col-xl-6">
+                    <div class="profile-name"><%= @user.name %></div>
+                    <div class="profile-intro"><%= simple_format(@user.profile) %></div>
+                </span>
+            </div>
+        </div>
+
+        <div class="r_content my-5">
+            <h3><%= responses_term %></h3>
+            <hr class="mb-4">
+            <%= render "/posts/response_design"%>
+        </div>
+
+        <% if user_signed_in? %>
+            <div class="r_form my-5 clearfix">
+                <hr>
+                <%# 閲覧者アイコン %>
+                <span class="item_user-icon mb-3 mx-3">
+                    <%= image_tag current_user.uimg.to_s, :size =>'48x48' %>
+                </span>
+                <h4 class="mt-4 mx-5"><%= lets_term_one %></h4>
+                <%# 解答入力フォーム %>
+                <%= form_with url: "/posts/#{@post.id}/responses", local: true do |f|%>
+                    <p><%= f.text_area :content, class: "form-control shadow", placeholder: lets_term_two, size: "30x10" %></p>
+                    <%= f.submit lets_term_three, class:"btn btn-success float-right" %>
+                <% end %>
+            </div>
+        <% else %>
+            <%# 登録おすすめ %>
+            <%= render 'posts/comeon_content' %>
+        <% end %>
+    </div>
+</div>

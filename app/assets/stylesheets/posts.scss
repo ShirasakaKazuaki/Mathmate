@@ -1,0 +1,1172 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// index配色
+    // FirstContent配色
+    $first-bg: #7fbfff;
+    $first-terms-color: #fff;
+    $first-btns: #469ff8;
+
+    // 投稿リスト配色
+    $index_list_badge: #58ACFA;
+    $index_list_likes: #F43E71;
+
+    // カテゴリー検索
+    $balloon_back: #f3f3f3;
+    $search_background: #475F77;
+
+// show配色
+    $show_categories_badge: #58ACFA;
+    $profile_img_zone: #386d9e;
+    
+// new & edit 配色
+    $new_content: #ffc107;
+    $new_content_scroll: #ffc107;
+    $new_content_scroll_back: #ffebaf;
+    $new_content_form: #ffebaf;
+
+    $how_to_box: rgb(255, 241, 192);
+    $how_to_box_shadow: rgb(255, 214, 64);
+
+// Question_box配色
+    $Question_color: #95ccff;
+    $question_scroll: #386d9e;
+    $question_scroll_back: #b3d6f7;
+    $question_form: #e0edff;
+    $question_img_btn: #668ad8;
+
+// Answer_box 配色
+    $Answer_color: #e9794c;
+    $answer_scroll: #e65225;
+    $answer_scroll_back: #f7ceb3;
+    $answer_form: #ffe0e0;
+    $answer_img_btn: #d86666;
+
+
+// カテゴリー配色
+    $unit_one_color: #7ebc59;
+    $unit_two_color: #7fbfff;
+    $unit_three_color: #d6adff;
+    $unit_a_color: #ff84c1;
+    $unit_b_color: #adadff;
+    $unit_c_color: #ffbf7f;
+    $unit_other_color: #333;
+
+// user_show
+    $user_img_btn: #41b6e6;
+
+// 共通デザイン
+    // index
+    .balloon{
+        position: relative;
+        padding: 20px;
+        background-color: $balloon_back;
+    }
+    
+    
+    .balloon::before{
+        content: '';
+        position: absolute;
+        left: 20px;
+        top: -15px;
+        display: block;
+        width: 0;
+        height: 0;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid $balloon_back;
+        border-left: 15px solid transparent;
+    }
+    .search_zone{
+        background-color: $search_background;
+        padding-bottom: 40px;
+    }
+
+    // 使い方
+    .clip-box {
+        position: relative;
+        margin: 2em auto;
+        padding: 15px 35px 15px 25px;
+        width: 100%; /* ボックス幅 */
+        background-color: $how_to_box; /* ボックス背景色 */
+        color: #666666; /* 文章色 */
+        box-shadow: 4px 4px 1px $how_to_box_shadow; /* 影の色 */
+    }
+    .clip-box::before {
+        position: absolute;
+        content: '';
+        top: -15px;
+        right: 10px;
+        height: 55px;
+        width: 15px;
+        border: 3px solid #C0C0C0; /*クリップ色 */
+        background-color: none;
+        border-radius: 12px;
+        box-shadow: 1px 1px 2px #ccc; /*クリップ影*/
+        transform: rotate(10deg);
+        z-index: 1;
+    }
+    .clip-box::after {
+        position: absolute;
+        content: '';
+        top: 0px;
+        width: 10px; 
+        right: 20px;
+        border: solid 5px $how_to_box; /*背景色と同じ色に！*/
+        z-index: 2;
+    }
+
+    // new.editの画面で使う囲み枠 
+
+    @mixin QAdesign($theme_color, $scroll, $scroll_back) {
+        display: none;
+        word-break: break-all;
+        position: relative;
+        margin: 10px 0 10px 0;
+        padding: 3em 1em 1em 1em;
+        border: solid 3px $theme_color;
+        border-radius: 8px;
+        overflow: scroll;
+        .show-title {
+            .top{
+                font-size: 35px;
+            }
+            position: absolute;
+            display: inline-block;
+            top: 0px;
+            left: 10px;
+            padding: 0 9px;
+            line-height: 1;
+            font-size: 25px;
+            background: rgba(0, 0, 0, 0);
+            color: $theme_color;
+            font-weight: bold;
+        }
+        p {
+            margin: 0; 
+            padding: 0;
+        }
+        .tex_contoroll{
+            overflow-x: auto;
+            
+        }
+        .tex_contoroll::-webkit-scrollbar{
+            height: 2px;
+            width: 7px;
+        }
+        .tex_contoroll::-webkit-scrollbar-thumb{
+            background: $scroll;
+            border-radius: 10px;
+        }
+        .tex_contoroll::-webkit-scrollbar-track-piece:start{
+            background: $scroll_back;
+        }
+        .tex_contoroll::-webkit-scrollbar-track-piece:end{
+            background: $scroll_back;
+        }
+        .show_img{
+            width: 30%;
+            margin: 0 0 30px 20px;
+            img{
+                box-shadow: 5px 10px 20px rgba(0,0,0,0.25);
+            }
+        }
+    }
+
+    .show_question {
+        @include QAdesign($Question_color, $question_scroll, $question_scroll_back );
+    }
+
+    .show_answer{
+        @include QAdesign($Answer_color, $answer_scroll, $answer_scroll_back );
+    }
+
+    .new_content_only{
+        @include QAdesign($new_content, $new_content_scroll, $new_content_scroll_back);
+    }
+    
+    @mixin img_title($theme_color){
+        .top{
+            font-size: 35px;
+        }
+        display: inline-block;
+        top: 0px;
+        left: 10px;
+        margin: 40px 0 0 0;
+        padding: 0 9px;
+        line-height: 1;
+        font-size: 25px;
+        background: #FFF;
+        color: $theme_color;
+        font-weight: bold;
+    }
+    .a_img_title{
+        @include img_title($Answer_color);
+    }
+
+    .q_img_title{
+        @include img_title($Question_color);
+    }
+
+    
+
+    // 入力フォームのデザイン
+    @mixin under_forms($theme_color){
+        position: relative;
+        display: inline-block;
+        padding: 7px 10px;
+        width: 100%;
+        font-size: 16px;
+        background: $theme_color;
+        p {
+            margin: 0;
+            padding: 0;
+        }
+        .latex{
+            background-color: $theme_color;
+        }
+    }
+
+    .under_q_form {
+        .text_qimg{
+            border: none; 
+            background-color: #FFF;
+        }
+        @include under_forms($question_form);
+    }
+
+    
+
+    .under_a_form {
+        .text_aimg{
+            border: none; 
+            background-color: #FFF;
+        }
+        @include under_forms($answer_form);
+    }
+
+    .under_c_form{
+        .form-control{
+            border: none; 
+            background-color: #FFF;
+        }
+        @include under_forms($new_content_form);
+    }
+
+    @mixin img_add_btn($theme_color) {
+        .btn-circle-fishy {
+            position: static;
+            display: inline-block;
+            padding: 1em 3em;
+            text-align: center;
+            text-decoration: none;
+            background: $theme_color;
+            color: #FFF;
+            border-bottom: solid 4px #627295;
+            border-radius: 3px;
+            width: 100%;
+        }
+        .btn-circle-fishy:active {
+            -webkit-transform: translateY(4px);
+            transform: translateY(4px);
+            box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);
+            border-bottom: none;
+        }
+    }
+    .under_q_img{
+        background-color: $question_form;
+        @include img_add_btn($question_img_btn)
+    }
+    .under_a_img{
+        background-color: $answer_form;
+        @include img_add_btn($answer_img_btn)
+    }
+    .under_u_img{
+        @include img_add_btn($user_img_btn)
+    }
+    
+    // show
+    .post_show{
+        .show_contents{
+            .show_posted_user{
+                font-size: 140%;
+                margin-bottom: 7px;
+            }
+            .poseted_user_only{
+                .user_only_btn{
+                    margin: 10px 10px;
+                    text-decoration:none !important;
+                    color: white !important;
+                }
+            }
+            .show_categories{
+                background-color: $show_categories_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 100%;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            
+            
+            .show_content{
+                margin-top: 60px;
+            }
+            .show_sup{
+                margin-top: 60px;
+            }
+            .user_buttons{
+                margin-top: 60px;
+            }
+            .profile-card{
+                text-align:center;
+                .img_zone{
+                    background-color: $profile_img_zone;
+                }
+                .item_user-author{
+                    margin: 5px 0;
+                    text-align: center;
+                    color: white;
+                }
+                hr{
+                    border: none;
+                    border-top:dashed 1px #FFF;
+                }
+                .profile-card-img{
+                    width:  180px;       /* ※縦横を同値に */
+                    height: 180px;       /* ※縦横を同値に */
+                    border-radius: 50%;
+                    border: #333;
+                    margin: 10px 0;
+                }
+                .profile-name{
+                    font-size: xx-large;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+
+@mixin first_content($bg_color: $first-bg, $font_color: $first-terms-color, $text-align: center){
+    background-color: $bg_color;
+    color: $font_color;
+    overflow: hidden;
+    text-align: $text-align;
+}
+@mixin logo($mt, $width){
+    margin-top: $mt;
+    width: $width;
+}
+@mixin first-title($font-size, $mt){
+    font-size: $font-size;
+    margin-top: $mt;
+}
+@mixin first-img($mt, $mb){
+    width: 100%;
+    margin-top: $mt;
+    margin-bottom: $mb;
+    text-align: center;
+}
+@mixin sec_content($mt, $mr, $mb, $ml, $text-arign: center){
+    margin: $mt $mr $mb $ml;
+    text-align: $text-arign;
+}
+@mixin first_buttons($mt, $mb){
+    margin: $mt 0 $mb 0;
+    width: 100%;
+    text-align: center;
+}
+@mixin btn-fr-rg($display, $my, $mx, $py, $px, $ft, $color:$first-terms-color, $btn_bg_color:$first-btns){
+    color: $color;
+    background-color: $btn_bg_color;
+    border-width: 0.3em;
+    display: $display;
+    margin: $my $mx;
+    padding: $py $px;
+    font-size: $ft;
+}
+@mixin term($font-size){
+    font-size: $font-size;
+}
+@mixin term-title($font-size){
+    font-size: $font-size;
+}
+@mixin sec_term($font-size){
+    font-size: $font-size;
+}
+@mixin result_zone($font-size){
+    font-size: $font-size;
+}
+
+// 画像のプレビュー表示
+.prev_img_zone{
+    text-align: center;
+    img{
+        width: 30%;
+        border: solid 2px black;
+        border-radius: 4px;
+    }
+}
+
+.img_del{
+    margin: 30px;
+    width: 200px;
+}
+
+.edit_img_del{
+    .img_del{
+        cursor: pointer;
+    }
+    
+    input{
+        display: none;
+    }
+}
+
+
+
+
+
+
+// スマホ縦表示 
+@media only screen and (max-width: 560px) {
+    // index
+
+        // FirstContent
+        .first_content{
+            @include first_content();
+            height: 100vh;
+            .logo{
+                @include logo(4.3vh, 60%);
+            }
+            .first-title{
+                @include first-title(8vw, 4vh);
+            }
+            .first-img{
+                @include first-img(7vh, 7vh);
+            }
+            .sec_content{
+                @include sec_content(-2vh, auto, -2vh, auto);
+            }
+            .first_buttons{
+                @include first_buttons(5vh, 0);
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(block, 2vh, 3vw, 1vh, 8vw, 17px);
+            }
+            .term{
+                @include term(5vw);
+            }
+            .term-title{
+                @include term-title(8vw);
+            }
+            .sec_term{
+                @include sec_term(4.3vw);
+            }
+        }
+        .result_zone{
+            @include result_zone(6vw);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin-left: 1.5vw;
+            .index_content_title{
+                font-size: 18px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 75%;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: small;
+                    }
+                    .index_content_date{
+                        font-size: small;
+                    }
+                }
+            }
+        }
+}
+
+// スマホ横表示
+@media only screen and (min-width: 560px) and (max-width: 736px) {
+    // index
+
+        // FirstContent
+        .first_content{
+            @include first_content();
+            .logo{
+                @include logo(30px, 100%);
+            }
+            .first-title{
+                @include first-title(7vw, 30px);
+            }
+            .first-img{
+                @include first-img(19px, 27px);
+            }
+            .sec_content{
+                @include sec_content(-2vh, auto, -2vh, auto);
+            }
+            .first_buttons{
+                @include first_buttons(20px, 20px);
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(block, 15px, 0, 5px, 7px, 15px);
+            }
+            .term{
+                @include term(30px);
+            }
+            .term-title{
+                @include term-title(5vw);
+            }
+            .sec_term{
+                @include sec_term(3vw);
+            }
+        }
+        .result_zone{
+            @include result_zone(6vw);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin-left: 1.5vw;
+            .index_content_title{
+                font-size: 18px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 75%;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: small;
+                    }
+                    .index_content_date{
+                        font-size: small;
+                    }
+                }
+            }
+        }
+}
+
+// タブレット縦表示
+@media only screen and (min-width: 737px) and (max-width: 960px){
+    // index
+
+        // FirstContent
+        .first_content{
+            @include first_content();
+            .logo{
+                @include logo(30px, 100%);
+            }
+            .first-title{
+                @include first-title(7vw, 30px);
+            }
+            .first-img{
+                @include first-img(19px, 27px);
+            }
+            .sec_content{
+                @include sec_content(-2vh, auto, -2vh, auto);
+            }
+            .first_buttons{
+                @include first_buttons(25px, 25px);
+
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(block, 26px, 10px, 5px, 20px, 20px);
+            }
+            .term{
+                @include term(30px);
+            }
+            .term-title{
+                @include term-title(5vw);
+            }
+            .sec_term{
+                @include sec_term(3vw);
+            }
+        }  
+        .result_zone{
+            @include result_zone(6vw);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin: 3px 1.5vw;
+            .index_content_title{
+                font-size: 26px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 16px;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: medium;
+                    }
+                    .index_content_date{
+                        font-size: medium;
+                    }
+                }
+            }
+        }
+}
+
+// タブレット横表示
+@media only screen and (min-width: 960px) and (max-width: 991px){
+    // index
+
+        // FirstContent
+        .first_content{
+            @include first_content();
+            .logo{
+                @include logo(60px, 100%);
+            }
+            .first-title{
+                @include first-title(60px, 70px);
+            }
+            .first-img{
+                @include first-img(30px, 0);
+            }
+            .sec_content{
+                @include sec_content(60px, auto, 60px, auto, left);
+            }
+            .first_buttons{
+                @include first_buttons(0, 40px);
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(inline, 0, 20px, 5px, 20px, 16px);
+            }
+            .term{
+                @include term(33px);
+            }
+            .term-title{
+                @include term-title(38px);
+            }
+            .sec_term{
+                @include sec_term(29px);
+            }
+        }
+        .result_zone{
+            @include result_zone(40px);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin: 3px 1.5vw;
+            .index_content_title{
+                font-size: 30px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 20px;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: medium;
+                    }
+                    .index_content_date{
+                        font-size: medium;
+                    }
+                }
+            }
+        }
+}
+
+// PC表示
+@media only screen and (min-width: 992px) and (max-width: 1439px)  {
+    // index
+
+        // FirstContent
+        .first_content{
+            @include first_content($text-align: left);
+            .logo{
+                @include logo(100px, 100%);
+            }
+            .first-title{
+                @include first-title(4vw, 70px);
+            }
+            .first-img{
+                @include first-img(45%, 0);
+            }
+            .sec_content{
+                @include sec_content(0, 0, 0, 15px, left);
+            }
+            .first_buttons{
+                @include first_buttons(60px, 60px);
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(inline-block, 20px, 40px, 20px, 40px, 20px);
+            }
+            .term{
+                @include term(26px);
+            }
+            .term-title{
+                @include term-title(3vw);
+            }
+            .sec_term{
+                @include sec_term(2vw);
+            }
+        }
+        .result_zone{
+            @include result_zone(40px);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin: 3px 1.5vw;
+            .index_content_title{
+                font-size: 30px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 20px;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: medium;
+                    }
+                    .index_content_date{
+                        font-size: medium;
+                    }
+                }
+            }
+        }
+
+    
+}
+
+// 最大固定値サイズ
+@media only screen and (min-width: 1440px) {
+    // index    
+
+        // FirstContent
+        .first_content{
+            @include first_content($text-align: left);
+            .logo{
+                @include logo(100px, 100%);
+            }
+            .first-title{
+                @include first-title(55px, 100px);
+            }
+            .first-img{
+                @include first-img(50%, 0);
+            }
+            .sec_content{
+                @include sec_content(10px, 0, 0, 15px, left);
+            }
+            .first_buttons{
+                @include first_buttons(60px, 60px);
+            }
+            .btn-fr-rg{
+                @include btn-fr-rg(inline-block, 20px, 40px, 20px, 40px, 20px);
+            }
+            .term{
+                @include term(26px);
+            }
+            .term-title{
+                @include term-title(40px);
+            }
+            .sec_term{
+                @include sec_term(20px);
+            }
+        }
+        .result_zone{
+            @include result_zone(40px);
+        }
+
+        // 投稿リスト
+        .index_content{
+            margin: 3px 1.5vw;
+            .index_content_title{
+                font-size: 30px;
+            }
+            .index_content_category{
+                background-color: $index_list_badge;
+                padding: 3px 6px;
+                margin: 1px 2px;
+                font-size: 20px;
+                color: white;
+                border-radius: 6px;
+                box-shadow: 0 0 3px #ddd;
+                white-space: nowrap;
+            }
+            .index_content_under{
+                position: relative;
+                .contents{
+                    position: absolute;
+                    right: 0;
+                    bottom: 0;
+                    .index_content_likes{
+                        color: $index_list_likes;
+                        margin-right: 6px;
+                        font-size: medium;
+                    }
+                    .index_content_date{
+                        font-size: medium;
+                    }
+                }
+            }
+        }
+}
+
+
+
+
+h2.post_create{
+    padding: .5em;
+    position: relative;
+    :after {
+        content: "";
+        display: block;
+        height: 4px;
+        background-image: linear-gradient(45deg, #709dff 0%, #91fdb7 100%);
+    }
+}
+
+
+.form_text {
+    position:relative;
+}
+
+.balloon1-top {
+    position: relative;
+    display: inline-block;
+    margin: 1.5em 0;
+    padding: 7px 10px;
+    min-width: 120px;
+    max-width: 100%;
+    color: #555;
+    font-size: 16px;
+    background: #e0edff;
+    :before {
+        content: "";
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        margin-left: -15px;
+        border: 15px solid transparent;
+        border-bottom: 15px solid #e0edff;
+    }
+    p {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+.card-padding{
+    padding:20px 40px 20px 40px;
+}
+
+p.overflow {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+.item_user-icon{
+    margin-top: 5px;
+    float: left;
+    background-color: white;
+}
+
+.item_user-name, .item_date {
+    margin-left: 40px;
+}
+
+.no-underline{
+    text-decoration:none !important;
+}
+
+// latex-buttons
+
+
+.btn-latex{
+    padding: 1px;
+    width: 7rem;
+    height: 2.5rem;
+}
+
+/*以下、②左側のコメント*/
+.balloon6 {
+    width: 100%;
+    margin: 10px 0;
+    overflow: hidden;
+
+    .faceicon {
+        float: left;
+        margin-right: -50px;
+        width: 40px;
+    }
+
+    .faceicon img{
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+    }
+
+    .chatting {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.says {
+    display: inline-block;
+    position: relative; 
+    margin: 0 0 0 50px;
+    padding: 10px;
+    max-width: 250px;
+    border-radius: 12px;
+    background: #edf1ee;
+
+    p {
+        margin: 0;
+        padding: 0;
+    }
+    :after {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        top: 3px; 
+        left: -19px;
+        border: 8px solid transparent;
+        border-right: 18px solid #edf1ee;
+        -webkit-transform: rotate(35deg);
+        transform: rotate(35deg);
+    }
+}
+
+
+
+
+
+.button_submit {
+    display: inline-block;
+    padding: .65em 4em;
+    background: -webkit-linear-gradient(#fe5f95 , #ff3f7f);
+    background: linear-gradient(#fe5f95 , #ff3f7f);
+    border: 1px solid #fe3276;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+}
+
+.button_submit:hover {
+    -webkit-animation: bounce 2s ease-in-out;
+    animation: bounce 2s ease-in-out;
+}
+
+@-webkit-keyframes bounce {
+    5%  { -webkit-transform: scale(1.1, .8); }
+    10% { -webkit-transform: scale(.8, 1.1) translateY(-5px); }
+    15% { -webkit-transform: scale(1, 1); }
+}
+
+@keyframes bounce {
+    5%  { transform: scale(1.1, .8); }
+    10% { transform: scale(.8, 1.1) translateY(-5px); }
+    15% { transform: scale(1, 1); }
+}
+
+
+.box_unit {
+    position: relative;
+    margin: 2em 0;
+    padding: 0.5em 1em;
+    border-radius: 8px;
+
+    .box-title {
+        position: absolute;
+        display: inline-block;
+        top: -13px;
+        left: 10px;
+        padding: 0 9px;
+        line-height: 1;
+        font-size: 19px;
+        background: #FFF;
+        font-weight: bold;
+    }
+    
+    p {
+        margin: 0; 
+        padding: 0;
+    }
+}
+
+.unit_one{
+    border: solid 3px $unit_one_color;
+    .box-title{
+        color: $unit_one_color;
+    }
+}
+.unit_two{
+    border: solid 3px $unit_two_color;
+    .box-title{
+        color: $unit_two_color;
+    }
+}
+.unit_three{
+    border: solid 3px $unit_three_color;
+    .box-title{
+        color: $unit_three_color;
+    }
+}
+.unit_a{
+    border: solid 3px $unit_a_color;
+    .box-title{
+        color: $unit_a_color;
+    }
+}
+.unit_b{
+    border: solid 3px $unit_b_color;
+    .box-title{
+        color: $unit_b_color;
+    }
+}
+.unit_c{
+    border: solid 3px $unit_c_color;
+    .box-title{
+        color: $unit_c_color;
+    }
+}
+.unit_other{
+    border: solid 3px $unit_other_color;
+    .box-title{
+        color: $unit_other_color;
+    }
+}
+
+.btn-sticky {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #f7f7f7;
+    
+    font-weight: bold;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+
+}
+.btn-sticky:active {
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+}
+
+// Stickyのカラー表記
+.btn-latex-pack{
+    border-left: solid 6px rgb(10, 177, 74);/*左線*/
+    color: rgb(10, 177, 74);/*文字色*/
+}
+
+.cat-one{
+    border-left: solid 6px $unit_one_color;/*左線*/
+    color: $unit_one_color;/*文字色*/
+}
+
+.cat-two{
+    border-left: solid 6px $unit_two_color;/*左線*/
+    color: $unit_two_color;/*文字色*/
+}
+
+.cat-three{
+    border-left: solid 6px $unit_three_color;/*左線*/
+    color: $unit_three_color;/*文字色*/
+}
+
+.cat-a{
+    border-left: solid 6px $unit_a_color;/*左線*/
+    color: $unit_a_color;/*文字色*/
+}
+
+.cat-b{
+    border-left: solid 6px $unit_b_color;/*左線*/
+    color: $unit_b_color;/*文字色*/
+}
+
+.cat-c{
+    border-left: solid 6px $unit_c_color;/*左線*/
+    color: $unit_c_color;/*文字色*/
+}
+
+.cat-other{
+    border-left: solid 6px $unit_other_color;/*左線*/
+    color: $unit_other_color;/*文字色*/
+}

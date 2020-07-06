@@ -1,0 +1,64 @@
+<div class="help_content container">
+    <h1>ヘルプ</h1>
+
+
+    <div class="row">
+    <div class="col-xs-12 col-sm-4 col-lg-4 col-xl-4">
+        <div class="list-group" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-howto-list" data-toggle="list" href="#list-howto" role="tab" aria-controls="list-howto">使い方</a>
+        <a class="list-group-item list-group-item-action" id="list-bug-list" data-toggle="list" href="#list-bug" role="tab" aria-controls="list-bug">バグ報告</a>
+        <a class="list-group-item list-group-item-action" id="list-regists-list" data-toggle="list" href="#list-regists" role="tab" aria-controls="list-regists">登録<br>退会</a>
+        <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="list-settings">アカウント設定</a>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-lg-8 col-xl-8 mt-3">
+        <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-howto" role="tabpanel" aria-labelledby="list-howto-list">
+        <ol>   
+            <h2>質問する</h2>
+            <li>アカウント登録後に、ヘッダーに表示されている『質問する』をタップします。スマートフォンの場合は、右上に表示してある<%= icon("fa", "bars") %>をタップしていただくと表示されます。</li>
+            <li>入力欄に問題や質問事項を記入してください。問題を書くのが面倒なときは、画像でもOK。『必須入力』と書かれている項目は必ず入力してください。</li>
+            <li>『登録する』をタップすれば、あなたの投稿が無事公開されます。解答を待ってみましょう。</li>
+        </ol>
+        <ol>   
+            <h2>回答する</h2>
+            <li>ログイン後、気になる投稿をタップします。『あなたの解答を送ろう！』の下にある入力フォームに回答を書きましょう。もちろん、LaTexに対応しています。</li>
+            <li>書き終えたら『投稿する』をタップ。無事あなたの解答を教えてあげることができました。</li>
+            <li>送った回答にはコメントがつくことがあります。答えてあげると親切ですね！</li>
+        </ol>
+        <ol>   
+            <h2>コメントする</h2>
+            <li>送られてきた回答に対して、コメントしてさらに深掘りした質問をすることができます。</li>
+            <li>『わからないこと亜があったら聞いてみよう！』と表示されているフォームにコメントを入力して『コメントする！』をタップすればOK。</li>
+        </ol>
+        </div>
+        <div class="tab-pane fade" id="list-bug" role="tabpanel" aria-labelledby="list-bug-list">
+        <p>お手数ですが、お問い合わせフォームよりお知らせいただけると助かります。</p>
+        <p class="ml-5"><i class="fa fa-envelope" aria-hidden="true"></i> <a href="/menu/contact">お問い合わせ</a></p>
+        </div>
+        <div class="tab-pane fade" id="list-regists" role="tabpanel" aria-labelledby="list-regists-list">
+        <ol>   
+            <h2>登録する</h2>
+            <li>トップ画面の『さっそく登録する！』、もしくはヘッダーの『登録』（スマートフォンの場合は、右上に表示してある<%= icon("fa", "bars") %>をタップしていただくと表示されます）をタップすると入力フォームに遷移します。</li>
+            <li>メアド、アカウント名、パスワードを入れればOK。メアドはログインの際にしか使用しません。</li>
+        </ol>
+        <ol>   
+            <h2>退会する</h2>
+            <li>ヘッダーの右上にあるアイコンをタップ（スマートフォンの場合は、右上に表示してある<%= icon("fa", "bars") %>をタップ＞マイページをタップ）して、マイページにアクセスします。</li>
+            <li>『パスワード・メアド設定』をタップして、遷移した画面の『アカウント削除』をタップしてください。</li>
+            <li><b>一度削除したアカウントの再開はできませんので、予めご了承ください。</b></li>
+        </ol>
+        </div>
+
+        <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+        <ol>   
+            <h2>メアド・パスワードの変更</h2>
+            <li>ヘッダーの右上にあるアイコンをタップ（スマートフォンの場合は、右上に表示してある<%= icon("fa", "bars") %>をタップ＞マイページをタップ）して、マイページにアクセスします。</li>
+            <li>『パスワード・メアド設定』をタップして、変更してください。</li>
+        </ol>
+        </div>
+        </div>
+    </div>
+    </div>
+
+</div>

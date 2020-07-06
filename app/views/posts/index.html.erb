@@ -1,0 +1,71 @@
+<% unless user_signed_in? %>
+    <div class="first_content">
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <%= image_tag("logo.png", :class => "logo") %>
+            <h2 class="first-title">君の問は、誰かの解に</h2>
+            <div class="term">数学専門の質問サイト、できました。</div>
+            
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+            <%= image_tag("2.png", :class => "first-img") %>            
+        </div>
+        <div class="sec_content">
+            <h3 class="mx-auto term-title">Mathmateとは？</h3>
+            <div class="mx-auto sec_term">Mathmateは数学専門の質問サービスです。</br>
+            誰でも簡単に、数学の質問ができます。
+            </div>
+        </div>
+        <div class="first_buttons">
+            <%= link_to new_user_registration_path  do%>
+                <div class="btn btn-fr-rg shadow"><%= icon("fa", "user-plus") %> さっそく登録する！</div>
+            <% end %>
+            <%= link_to new_user_session_path  do%>
+                <div class="btn btn-fr-rg shadow"><%= icon("fa", "home") %> ログイン</div>
+            <% end %>
+        </div>
+    </div>
+    </div>
+    </div>
+<% end %>
+
+<div class="search_zone">
+    <%= form_with url: '/posts', method: :get, local: true do |f|%>
+        <nav class="navbar navbar-light mb-2">
+            <%= f.text_field :search, class:"form-control shadow mt-3", placeholder:"🔎 キーワードを入力" %>
+        </nav>
+        <div class="btn btn-primary shadow ml-3" data-toggle="collapse" data-target="#collapseUnits" aria-expanded="false" aria-controls="collapseExample">
+            単元検索 ▼
+        </div>
+        <div class="collapse" id="collapseUnits">
+            <div class="balloon mt-3">
+                <%= render partial: 'posts/categories', locals: {'f': f} %>
+            </div>
+        </div>
+        
+        <div class="mt-5">
+            <div class="btn_zone container">
+            <div class="row">
+                <%= f.submit '検索する', class:"btn btn-success shadow px-5 mx-auto" %>
+            </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<div class="result_zone mb-2">
+    <% if @searched_posts.present? %>
+        <%= paginate @searched_posts %>
+        <% @searched_posts.each do |post|%>
+                <%= render partial: 'posts/top_content', locals: {'post': post} %>
+        <% end %>
+        <%= paginate @searched_posts %>
+    <% else %>
+        <p class="m-5">🙈検索結果はありませんでした。。。</p>
+    <% end %>
+</div>
+
+    
+
+

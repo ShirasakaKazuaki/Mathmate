@@ -1,0 +1,21 @@
+<hr>
+<%= link_to "posts/#{post.id}", method: :get,class: "text-dark no-underline" do%>
+<div class="index_content">
+    <h2 class="index_content_title"><%= post.title%></h2>
+    <% post.units.each do |unit| %>
+        <span class="index_content_category">
+            <%= unit.unit_name %>
+        </span>
+    <% end %>
+    <div class="index_content_under mt-5">
+        <div class="contents">
+            <span class="index_content_likes">
+                <%= icon("fa", "sign-language") %> <%= post.likes.count %>
+            </span>
+            <span class="index_content_date">
+                <%= icon("fa", "redo-alt") %> 更新日：<%= post.updated_at.to_s(:datetime_jp)%>
+            </span>
+        </div>
+    </div>
+</div>
+<% end %>

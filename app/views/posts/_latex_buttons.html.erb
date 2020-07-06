@@ -1,0 +1,9 @@
+<div class="btn-latex-pack btn-sticky my-4" style="width: 100%;">数式コード</div>
+
+<div class="container latex-buttons" style="display: none;">    
+    <div class="mx-auto row justify-content-center">
+        <% latex_terms.each do |key,value| %>
+            <div class="btn btn-latex btn-outline-success mt-2 mr-1 <%= type_class %>" id=<%= key %>><%= value %></div>
+        <% end %>
+    </div>
+</div>

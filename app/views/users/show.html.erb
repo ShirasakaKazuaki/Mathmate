@@ -1,0 +1,57 @@
+<div class="container">
+    <h1 class="mb-3"><%= @user.name%>さんのマイページ</h2>
+    <hr>
+    <%= form_with model: @user, local: true, class:"validate" do |f|%>
+        <div class="row">
+            <div class="col-xs-12 col-lg-5 mt-5 mx-auto">
+                <h2>プロフィール画像</h2>
+                <div class="card" style="width: 100%;">
+                    <%= image_tag @user.uimg.to_s, class:"card-img-top img_view_u"%>
+                    <div class="card-body">
+                        <div class="btn btn-danger del_btn btn-u  text-center float-right" data-btn-class="btn-u" data-del-img-class="img_view_u" data-apr-form="form_uarea">画像を削除する</div>
+                        <div class="form_uarea under_u_img" style="display: none;">
+                            <%= render partial: 'posts/img_form', locals: {'f': f, 'img': 'uimg'}%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-7 mt-5 mx-auto">
+                <h2>プロフィール</h2>
+                <%= f.text_area :profile, class:"form-control shadow", style: "height: 43vh"%>
+            </div>
+
+            <%= f.submit "更新する！", class:"btn  btn-success btn-block mt-3 mx-2" %>
+        </div>
+    <% end %>
+    
+    <hr class="mt-4">
+
+    <div class="my-4">
+        <%= link_to "/users/edit" do%>
+            <p><%= icon("fa", "cog") %>　パスワード・メアド設定</p>
+        <% end %>
+    </div>
+
+    <hr class="mt-4">
+
+    <nav class="tab-group nav nav-pills flex-column flex-sm-row">
+        <li class="tab flex-sm-fill text-sm-center nav-link">質問一覧</li>
+        <li class="tab flex-sm-fill text-sm-center nav-link">Clap一覧</li>
+        <li class="tab flex-sm-fill text-sm-center nav-link">Stock一覧</li>
+        <li class="tab flex-sm-fill text-sm-center nav-link">コメントした記事一覧</li>
+    </nav>
+
+    <hr class="mt-3">
+
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="user-content"><%= render partial: 'users/tabs', locals: {params: @posts}%></div>
+            <div class="user-content"><%= render partial: 'users/tabs', locals: {params: @likes}%></div>
+            <div class="user-content"><%= render partial: 'users/tabs', locals: {params: @stocks}%></div>
+            <div class="user-content"><%= render partial: 'users/tabs', locals: {params: @answers}%></div>
+        </div>
+    </div>
+</div>

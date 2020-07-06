@@ -1,0 +1,110 @@
+<div class="container justify-content-center">
+
+    <div class="clip-box">
+        <h6>【使い方】</h4>
+        数式コードをタップすると、入力ボックスに数式コードが表示されるよ😎<br>
+        変数部分を好きな値に変えて、問題を書いてみよう！
+    </div>
+
+    <%= form_with model: @post, local: true, class: "validate", local: true do |f|%>
+    <div class="mt-5">
+
+        <h2 class="post_create mb-2"><%= step_one%></h2>
+        <div class="text_qimg">
+            <%= render partial: 'posts/QACdesign', locals: {qac_class: "show_question", qac_id: "q_preview", title: prev }%>
+
+            <div class="under_q_form">
+                <p><%= f.text_area :question, id: "textform_question", class: "form-control form_grp_qimg", style: "border: none", size: "30x10", placeholder: step_one_text %></p>
+                <div class="latex">
+                    <%= render partial: 'posts/latex_buttons', locals: {type_class: "question_type" }%>
+                </div>
+                <% if @post.qimg.present? %>
+                    <div class="prev_img_zone">
+                        <div><%= image_tag @post.qimg.to_s, :width => '100%', class:"mt-3 img_view_q" %></div>
+                        <div class="edit_img_del">
+                            <%= f.check_box :remove_qimg, class:"check_box", id:"edit_del_q" %>
+                            <label class="btn btn-danger img_del edit_del_q btn-q" for="edit_del_q"　data-btn-class="btn-q" data-del-img-class="img_view_q" data-apr-form="form_qarea">画像を削除する</label>
+                        </div>
+                        <div class="form_qarea under_q_img" style="display: none;">
+                            <%= render partial: 'posts/img_form', locals: {'f': f, 'img': "qimg"}%>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% if @post.qimg.blank? %>
+            <div class="under_q_img">
+                <%= render partial: 'posts/img_form', locals: {'f': f, 'img': "qimg"}%>
+            </div>
+        <% end %>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="post_create mb-2"><%= step_two%></h2>
+        <div class="text_aimg">
+            <%= render partial: 'posts/QACdesign', locals: {qac_class: "show_answer", qac_id: "a_preview", title: prev }%>
+
+            <div class="under_a_form">
+                <p><%= f.text_area :answer, id: "textform_answer", class: "form-control form_grp_aimg", style: "border: none", size: "30x10", placeholder: step_two_text %></p>
+                <div class="latex">
+                    <%= render partial: 'posts/latex_buttons', locals: {type_class: "answer_type" }%>
+                </div>
+                <% if @post.aimg.present? %>
+                    <div class="prev_img_zone">
+                        <div><%= image_tag @post.aimg.to_s, :width => '100%', class:"mt-3 img_view_a" %></div>
+                        <div class="edit_img_del">
+                            <%= f.check_box :remove_aimg,  class:"check_box", id:"edit_del_a" %>
+                            <label class="btn btn-danger img_del edit_del_a btn-a" for="edit_del_a"　data-btn-class="btn-a" data-del-img-class="img_view_a" data-apr-form="form_aarea">画像を削除する</label>
+                        </div>
+                        <div class="form_aarea under_a_img" style="display: none;">
+                            <%= render partial: 'posts/img_form', locals: {'f': f, 'img': "aimg"}%>
+                        </div>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <% if @post.aimg.blank? %>
+        <div class="under_a_img">
+            <%= render partial: 'posts/img_form', locals: {'f': f, 'img': "aimg"}%>
+        </div>
+        <% end %>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="post_create mb-2"><%= step_three %></h2>
+        <span class="ml-3 badge badge-danger">必須入力</span>
+
+        <%= render partial: 'posts/QACdesign', locals: {qac_class: "new_content_only", qac_id: "content_preview", title: prev }%>
+
+        <div class="under_c_form">
+            <p><%= f.text_area :content, id: "textform_content", class: "form-control", size: "30x10", placeholder:step_three_text %></p>
+        </div>
+
+        <%= render partial: 'posts/latex_buttons', locals: {type_class: "content_type" }%>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="post_create mb-2"><%= step_four %></h2>
+        <span class="ml-3 badge badge-danger">必須入力</span>
+            <p class="my-auto"><%= f.text_field :title, class: "form-control", style: "border: none", placeholder:step_four_text %></p>
+    </div>
+
+    <div class="mt-5">
+        <h2 class="post_create mb-2"><%= step_five %></h2>
+        <span class="ml-3 badge badge-danger">必須選択</span>
+        <%= render partial: 'posts/categories', locals: {'f': f} %>
+        
+    </div>
+
+    <div class="mt-5">
+        <h2 class="post_create mb-2"><%= step_six %></h2>
+        <p><%= f.text_area :supplement, class: "form-control", style: "border: none", size: "30x10", placeholder:step_six_text %></p>
+    </div>
+
+    <div class="mt-5">
+        <%= f.submit class:"btn button_submit  btn-block my-5" %>
+    </div>
+
+    <% end %>
+    
+</div>

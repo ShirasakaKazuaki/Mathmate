@@ -1,0 +1,6 @@
+<%= f.label :"#{img}", class: "btn-circle-fishy mt-3 btn_#{img}" do%>
+    <%= icon("fa", "images") %>　画像を追加
+<% end %>
+<div class="view_box box_<%=img%> ">
+    <%= f.file_field :"#{img}", class: "file form_grp_#{img}", data: {target_text: "text_#{img}", target_btn: "btn_#{img}", target_box: "box_#{img}"}, style: "display:none;" %>
+</div>
