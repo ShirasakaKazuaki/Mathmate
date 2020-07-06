@@ -51,6 +51,12 @@ MathmateはAWSに、次のような構成でデプロイしています。
 
 - 認証（ログイン）機能(devise)
 
+- テスト
+    - RSpec
+    - Capybara
+    - FactoryBot
 
+- 品質管理
+   - Rubocop
 
 
