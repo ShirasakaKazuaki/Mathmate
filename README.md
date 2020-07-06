@@ -1,3 +1,5 @@
+![Mathmate](https://user-images.githubusercontent.com/63136727/86557158-51fdba00-bf90-11ea-860d-927b06825264.JPG)
+
 # Mathmate: 数学専用質問サービス
 ---
 Mathmateは数学に特化した質問サービスです。従来の質問サービスとは違い、数式がキレイに表示できるライブラリ「LaTex」を導入してあります。
@@ -12,6 +14,8 @@ MathmateはAWSに、次のような構成でデプロイしています。
 
 #### インフラ環境
 - EC2/ RDS/ S3/ AMI/ ELB/ MySQL/ Nginx/ Unicorn
+![インフラ構成](https://user-images.githubusercontent.com/63136727/86557166-56c26e00-bf90-11ea-9336-08fac147e50a.PNG)
+
 #### 言語/フレームワーク
 - Ruby/ Ruby on Rails
 - Scss/ Bootstrap
