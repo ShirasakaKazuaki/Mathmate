@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   before_action :move_to_index
 
   def show
-    @user = User.find(current_user.id) if current_user.id.present?
-    @posts = Post.where(user_id: current_user.id)
-    @likes = Like.where(user_id: current_user.id)
-    @stocks = Stock.where(user_id: current_user.id)
-    @answers = Response.where(user_id: current_user.id)
+    @user = current_user if current_user
+    @posts = current_user.posts
+    @likes = current_user.likes
+    @stocks = current_user.stocks
+    @answers = current_user.responses
   end
 
   def edit
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
       uimg: uimg,
       profile: user_params[:profile]
     )
+    
     redirect_to "/users/#{user.id}"
   end
 
